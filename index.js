@@ -3,8 +3,14 @@ const counts = {
     "player": 0
 }
 let playCount = 0
+const game = document.getElementById("game");
+const round = document.getElementById("result");
 
-const selections = document.querySelectorAll("button");
+const replayButton = document.getElementById("replayButton");
+
+replayButton.addEventListener("click", resetGame);
+
+const selections = document.querySelectorAll(".button");
 selections.forEach((selection) => {
     selection.addEventListener('click', (e) => {
         if (playCount < 5) buttonClicked(e);
@@ -12,12 +18,12 @@ selections.forEach((selection) => {
     })
 })
 function buttonClicked(e) {
-    const round = playRound(e.target.innerText, getComputerChoice())
+    const round = playRound(e.currentTarget.querySelector('img').getAttribute('alt'), getComputerChoice())
     displayRound(round);
     adjustCount(round);
 }
 function displayRound(round) {
-    const div = document.querySelector("div");
+    const div = document.getElementById("result");
     div.innerText = round;
 }
 
@@ -64,8 +70,22 @@ function adjustCount(round) {
 function gameOver() {
     let winner;
     if (counts["computer"] === counts["player"]) winner = `There's no winner! Tied with ${counts["computer"]} wins!`
-    winner = (counts["player"] > counts["computer"]) ? `You win with with ${counts["player"]} wins` : `Too bad, you lose! The computer wins with ${counts["computer"]} wins.`
+    winner = (counts["player"] > counts["computer"]) ? `You win with ${counts["player"]} wins` : `Too bad, you lose! The computer wins with ${counts["computer"]} wins.`
 
-    const game = document.getElementById("game");
+    
+    round.innerText = "";
     game.innerText = winner;
+
+    replayButton.classList.remove("hidden");
+}
+
+function resetGame() {
+    
+    counts["computer"] = 0;
+    counts["player"] = 0;
+    playCount = 0;
+    
+    game.textContent = "";
+
+    replayButton.classList.add("hidden");
 }

@@ -5,20 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <button id="button">
-        Rock
-    </button >
-    <button id="button">
-        Paper
-    </button>
-    <button id="button">
-        Scissors
-    </button>
-    <div id="result"></div>
-    <div id="game"></div>
+    <h1>ROCK PAPER SCISSORS</h1>
+    <div id="button-container">
+        <button class="button"><img src="rock.png" alt="rock">
+        </button>
+        <button class="button"><img src="paper.png" alt="paper">
+        </button>
+        <button class="button"><img src="scissors.png" alt="scissors">
+        </button>
+    </div>
+    <div id="output">
+        <div id="result"></div>
+        <div id="game"></div>
+        <button id="replayButton" class="hidden">Play Again</button>
+    </div>
     <script defer src="index.js"></script>
 </body>
 
